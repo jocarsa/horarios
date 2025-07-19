@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Horarios</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Generador de Horarios</h1>
+        
+        <div class="tabs">
+            <button class="tab-button active" data-tab="profesores">Profesores</button>
+            <button class="tab-button" data-tab="asignaturas">Asignaturas</button>
+            <button class="tab-button" data-tab="grupos">Grupos</button>
+            <button class="tab-button" data-tab="horarios">Horarios</button>
+            <button class="tab-button"  id="save-data">Guardar</button>
+            <button class="tab-button" id="load-data">Cargar</button>
+        </div>
+        
+        <div id="profesores" class="tab-content active">
+            <h2>Gestión de Profesores</h2>
+            <form id="profesor-form">
+                <input type="text" id="profesor-nombre" placeholder="Nombre del profesor" required>
+                <div class="disponibilidad">
+                    <h3>Disponibilidad</h3>
+                    <div class="dias-semana">
+                        <div class="dia">
+                            <label><input type="checkbox" class="dia-checkbox" data-dia="lunes"> Lunes</label>
+                            <div class="horas-dia" data-dia="lunes" style="display:none;">
+                                <label>De <input type="time" class="hora-inicio" value="08:00" min="08:00" max="22:00"> a 
+                                <input type="time" class="hora-fin" value="22:00" min="08:00" max="22:00"></label>
+                            </div>
+                        </div>
+                        <div class="dia">
+                            <label><input type="checkbox" class="dia-checkbox" data-dia="martes"> Martes</label>
+                            <div class="horas-dia" data-dia="martes" style="display:none;">
+                                <label>De <input type="time" class="hora-inicio" value="08:00" min="08:00" max="22:00"> a 
+                                <input type="time" class="hora-fin" value="22:00" min="08:00" max="22:00"></label>
+                            </div>
+                        </div>
+                        <div class="dia">
+                            <label><input type="checkbox" class="dia-checkbox" data-dia="miercoles"> Miércoles</label>
+                            <div class="horas-dia" data-dia="miercoles" style="display:none;">
+                                <label>De <input type="time" class="hora-inicio" value="08:00" min="08:00" max="22:00"> a 
+                                <input type="time" class="hora-fin" value="22:00" min="08:00" max="22:00"></label>
+                            </div>
+                        </div>
+                        <div class="dia">
+                            <label><input type="checkbox" class="dia-checkbox" data-dia="jueves"> Jueves</label>
+                            <div class="horas-dia" data-dia="jueves" style="display:none;">
+                                <label>De <input type="time" class="hora-inicio" value="08:00" min="08:00" max="22:00"> a 
+                                <input type="time" class="hora-fin" value="22:00" min="08:00" max="22:00"></label>
+                            </div>
+                        </div>
+                        <div class="dia">
+                            <label><input type="checkbox" class="dia-checkbox" data-dia="viernes"> Viernes</label>
+                            <div class="horas-dia" data-dia="viernes" style="display:none;">
+                                <label>De <input type="time" class="hora-inicio" value="08:00" min="08:00" max="22:00"> a 
+                                <input type="time" class="hora-fin" value="22:00" min="08:00" max="22:00"></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit">Guardar Profesor</button>
+            </form>
+            
+            <div class="lista-profesores">
+                <h3>Lista de Profesores</h3>
+                <table id="tabla-profesores">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Disponibilidad</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="profesores-lista"></tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div id="asignaturas" class="tab-content">
+            <h2>Gestión de Asignaturas</h2>
+            <form id="asignatura-form">
+                <input type="text" id="asignatura-nombre" placeholder="Nombre de la asignatura" required>
+                <input type="number" id="asignatura-horas" placeholder="Horas semanales" min="1" required>
+                <div id="profesor-asignatura-container">
+                    <label for="profesor-asignatura">Profesor:</label>
+                    <select id="profesor-asignatura" required>
+                        <option value="">Seleccione un profesor</option>
+                    </select>
+                </div>
+                <div id="grupos-asignatura-container">
+                    <label>Grupos:</label>
+                    <div id="grupos-asignatura-lista" class="checkbox-list"></div>
+                </div>
+                <button type="submit">Guardar Asignatura</button>
+            </form>
+            
+            <div class="lista-asignaturas">
+                <h3>Lista de Asignaturas</h3>
+                <table id="tabla-asignaturas">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Horas</th>
+                            <th>Profesor</th>
+                            <th>Grupos</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="asignaturas-lista"></tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div id="grupos" class="tab-content">
+            <h2>Gestión de Grupos</h2>
+            <form id="grupo-form">
+                <input type="text" id="grupo-nombre" placeholder="Nombre del grupo" required>
+                <button type="submit">Guardar Grupo</button>
+            </form>
+            
+            <div class="lista-grupos">
+                <h3>Lista de Grupos</h3>
+                <table id="tabla-grupos">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="grupos-lista"></tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div id="horarios" class="tab-content">
+            <h2>Generador de Horarios</h2>
+            <div class="horario-options">
+                <label for="select-grupo">Mostrar horario para:</label>
+                <select id="select-grupo">
+                    <option value="todos">Todos los grupos</option>
+                </select>
+                <button id="generar-horario">Generar Horario</button>
+            </div>
+            <div id="resultado-horario"></div>
+        </div>
+    </div>
+
+    <!-- Modal para editar -->
+    <div id="modal-editar" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modal-contenido"></div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
