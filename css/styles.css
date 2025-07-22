@@ -96,7 +96,7 @@ table {
 }
 
 th, td {
-    padding: 12px;
+   
     text-align: left;
     border-bottom: 1px solid #ddd;
 }
@@ -198,7 +198,7 @@ tr:hover {
 
 .horario-table th, .horario-table td {
     border: 1px solid #ddd;
-    padding: 8px;
+    
     text-align: center;
 }
 
@@ -217,7 +217,7 @@ tr:hover {
 }
 
 .asignatura-cell {
-    padding: 5px;
+    font-size:10px;
     border-radius: 3px;
     color: #333;
     margin: 2px;
